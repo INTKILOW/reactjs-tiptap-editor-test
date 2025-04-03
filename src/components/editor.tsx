@@ -50,81 +50,7 @@ import "easydrawer/styles.css";
 
 import "reactjs-tiptap-editor/style.css";
  
-const extensions = (uploadFile?: (data: any) => Promise<any>) => [
-  BaseKit.configure({
-    multiColumn: true,
-    placeholder: {
-      showOnlyCurrent: true,
-    },
-    characterCount: false,
-  }),
-  History,
-  SearchAndReplace,
-  TextDirection,
-  TableOfContents,
-  FormatPainter.configure({ spacer: true }),
-  Clear,
-  FontFamily,
-  Heading.configure({ spacer: true }),
-  FontSize,
-  Bold,
-  Italic,
-  Underline,
-  Strike,
-  MoreMark,
-  Katex,
-  Emoji,
-  Color.configure({ spacer: true }),
-  Highlight,
-  BulletList,
-  OrderedList,
-  TextAlign.configure({ types: ["heading", "paragraph"], spacer: true }),
-  Indent,
-  LineHeight,
-  TaskList.configure({
-    spacer: true,
-    taskItem: {
-      nested: true,
-    },
-  }),
-  Link,
-  Image.configure({
-    upload: async (files: File) => {
-      // console.log(files);
-      const { data } = await uploadFile?.([files]);
 
-      if (data.code === 200) {
-        return data.data;
-      }
-
-      return [];
-    },
-  }),
-  Blockquote.configure({ spacer: true }),
-  SlashCommand,
-  HorizontalRule,
-  Code.configure({
-    toolbar: false,
-  }),
-  CodeBlock.configure({ defaultTheme: "dracula" }),
-  ColumnActionButton,
-  Table,
-  Iframe,
-  ExportPdf.configure({ spacer: true }),
-  ExportWord,
-  Excalidraw,
-  Mention,
-];
-
-function debounce(func: any, wait: number) {
-  let timeout: NodeJS.Timeout;
-
-  return function (...args: any[]) {
-    clearTimeout(timeout);
-    // @ts-ignore
-    timeout = setTimeout(() => func.apply(this, args), wait);
-  };
-}
 
 export interface RichTextProps {
   isDisabled?: boolean;
@@ -139,6 +65,82 @@ export default function RichTextEditor(props: RichTextProps) {
   const refEditor = React.useRef<any>(null);
 
  
+
+  const extensions = (uploadFile?: (data: any) => Promise<any>) => [
+    BaseKit.configure({
+      multiColumn: true,
+      placeholder: {
+        showOnlyCurrent: true,
+      },
+      characterCount: false,
+    }),
+    History,
+    SearchAndReplace,
+    TextDirection,
+    TableOfContents,
+    FormatPainter.configure({ spacer: true }),
+    Clear,
+    FontFamily,
+    Heading.configure({ spacer: true }),
+    FontSize,
+    Bold,
+    Italic,
+    Underline,
+    Strike,
+    MoreMark,
+    Katex,
+    Emoji,
+    Color.configure({ spacer: true }),
+    Highlight,
+    BulletList,
+    OrderedList,
+    TextAlign.configure({ types: ["heading", "paragraph"], spacer: true }),
+    Indent,
+    LineHeight,
+    TaskList.configure({
+      spacer: true,
+      taskItem: {
+        nested: true,
+      },
+    }),
+    Link,
+    Image.configure({
+      upload: async (files: File) => {
+        // console.log(files);
+        const { data } = await uploadFile?.([files]);
+  
+        if (data.code === 200) {
+          return data.data;
+        }
+  
+        return [];
+      },
+    }),
+    Blockquote.configure({ spacer: true }),
+    SlashCommand,
+    HorizontalRule,
+    Code.configure({
+      toolbar: false,
+    }),
+    CodeBlock.configure({ defaultTheme: "dracula" }),
+    ColumnActionButton,
+    Table,
+    Iframe,
+    ExportPdf.configure({ spacer: true }),
+    ExportWord,
+    Excalidraw,
+    Mention,
+  ];
+  
+  function debounce(func: any, wait: number) {
+    let timeout: NodeJS.Timeout;
+  
+    return function (...args: any[]) {
+      clearTimeout(timeout);
+      // @ts-ignore
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
 
   const onValueChange = useCallback(
     debounce((value: any) => {
