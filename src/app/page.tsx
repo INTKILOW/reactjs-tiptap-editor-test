@@ -1,6 +1,7 @@
 'use client';
 import RichTextEditor from "@/components/editor";
 import { useState } from "react";
+import NextLink from "next/link";
 
 export default function Home() {
 
@@ -8,8 +9,7 @@ export default function Home() {
   const [value1, setValue1] = useState<string>('');
   return<>
     <div>
-      <RichTextEditor value={value} setValue={setValue}/>
-      <RichTextEditor value={value1} setValue={setValue1}/>
+      <NextLink href="/pages/test/t-page" >ASDSAFASD</NextLink>
     </div>
   </>
  
