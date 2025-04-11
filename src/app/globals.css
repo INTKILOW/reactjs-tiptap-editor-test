@@ -40,3 +40,13 @@ a {
     color-scheme: dark;
   }
 }
+
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
+.h-full {
+  height: 100%;
+}
