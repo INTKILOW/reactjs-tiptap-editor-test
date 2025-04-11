@@ -9,7 +9,7 @@ export default function Home() {
   const [value1, setValue1] = useState<string>('');
   return<>
     <div>
-      <NextLink href="/pages/test/t-page" >ASDSAFASD</NextLink>
+      <NextLink href="/pages/test/t-page" >Click Test</NextLink>
     </div>
   </>
  
